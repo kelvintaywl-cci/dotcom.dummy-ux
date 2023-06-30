@@ -5,4 +5,4 @@ jobs:
     docker:
       - image: cimg/base:current
     steps:
-      - checkout
+      - run: echo $CIRCLE_BRANCH
