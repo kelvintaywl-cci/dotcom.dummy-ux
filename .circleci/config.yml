@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: cimg/base:current
     steps:
-      - run: printenv FOOBAR > foobar.txt
+      - run: printenv ORG_FOOBAR > foobar.txt
       - store_artifacts:
           path: foobar.txt
 
@@ -15,4 +15,6 @@ workflows:
       - build:
           context:
             # account context on my Server 4.x
+            # switched to using org context, org-dummy, instead of account context.
+            # this CI project passes org contexts over for forked PRs.
             - dummy
