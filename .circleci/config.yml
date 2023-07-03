@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: cimg/base:current
     steps:
+      # making a contribution as a user outside of kelvintayw-cci GH org
       - run: printenv FOOBAR > foobar.txt
       - store_artifacts:
           path: foobar.txt
