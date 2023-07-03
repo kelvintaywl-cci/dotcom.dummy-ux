@@ -5,7 +5,9 @@ jobs:
     docker:
       - image: cimg/base:current
     steps:
-      - run: printenv FOOBAR
+      - run: printenv FOOBAR > foobar.txt
+      - store_artifacts:
+          path: foobar.txt
 
 workflows:
   main:
