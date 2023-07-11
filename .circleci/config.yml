@@ -6,19 +6,13 @@ jobs:
       - image: cimg/base:current
     steps:
       - run:
-          background: true
-          name: long background task
+          name: step 1
           command: |
-            echo "mock background step that takes > 10mins"
-            sleep 700
-            echo "done!"
+            echo "sleep 610" >> ./mock.sh
+            chmod +x ./mock.sh
+            # use `|| true` to force the overall step as exit 0
+            timeout 9m bash ./mock.sh || true
       - run:
-          name: long step 1
+          name: step 2
           command: |
-            echo "mock step for 6 mins"
-            sleep 360
-      - run:
-          name: long step 2
-          command: |
-            echo "mock step for 6 mins"
-            sleep 360
+            echo "running fine!!!"
