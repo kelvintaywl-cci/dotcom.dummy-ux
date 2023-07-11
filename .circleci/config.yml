@@ -5,4 +5,20 @@ jobs:
     docker:
       - image: cimg/base:current
     steps:
-      - run: echo $CIRCLE_BRANCH
+      - run:
+          background: true
+          name: long background task
+          command: |
+            echo "mock background step that takes > 10mins"
+            sleep 700
+            echo "done!"
+      - run:
+          name: long step 1
+          command: |
+            echo "mock step for 6 mins"
+            sleep 360
+      - run:
+          name: long step 2
+          command: |
+            echo "mock step for 6 mins"
+            sleep 360
