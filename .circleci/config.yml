@@ -6,13 +6,9 @@ jobs:
       - image: cimg/base:current
     steps:
       - run:
-          name: step 1
+          name: create
           command: |
-            echo "sleep 610" >> ./mock.sh
-            chmod +x ./mock.sh
-            # use `|| true` to force the overall step as exit 0
-            timeout 1m bash ./mock.sh || (echo "timed out and cancelling process!" && exit 0)
-      - run:
-          name: step 2
-          command: |
-            echo "running fine!!!"
+            echo "$CIRCLE_SHA1" >> ./sha.txt
+      - store_artifacts:
+          path: /home/circleci/project/sha.txt
+          destination: sha.txt
